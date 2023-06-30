@@ -4,13 +4,18 @@ from .forms import ProductoForm
 
 def productos(request):
     productos = Productos.objects.all()
-    return render(request, 'productos.html', {'productos': productos})
+    productos_var = 'productos.html'
+    print(productos_var)
+    return render(request, productos_var, {'productos': productos})
 
 def ingresar_producto(request):
     form = ProductoForm()
     if request.method == 'POST':
         form = ProductoForm(request.POST)
         if form.is_valid():
-            form.save()
-            # Realizar acciones adicionales si es necesario
-    return render(request, 'ingresar_producto.html', {'form': form})
+            form.save() 
+        return render(request, 'ingresar_producto.html', {'form': form})        ##    en el regreso regresar otro htpml
+    else:
+        form = ProductoForm()
+        return render(request, 'ingresar_producto.html', {'form': form}) 
+
