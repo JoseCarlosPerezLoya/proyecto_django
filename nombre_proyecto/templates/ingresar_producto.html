@@ -1,6 +1,66 @@
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-  </form>
-      
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .form-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section label {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="form-title">Agregar Producto</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-section">
+                <label for="nombre" class="form-label">Nombre</label>
+                {{ form.nombre }}
+            </div>
+            <div class="form-section">
+                <label for="descripcion" class="form-label">Descripción</label>
+                {{ form.descripcion }}
+            </div>
+            <div class="form-section">
+                <label for="precio" class="form-label">Precio</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="precio" name="precio" placeholder="Ingresa el precio">
+                </div>
+            </div>
+            <div class="form-section">
+                <label for="fecha_registro" class="form-label">Fecha de Registro</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="fecha_registro" name="fecha_registro" placeholder="Selecciona una fecha">
+                </div>
+            </div>
+            <div class="form-section">
+                <label for="estatus" class="form-label">Estatus</label>
+                {{ form.estatus }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr('#fecha_registro', {
+            enableTime: false,
+            dateFormat: 'Y-m-d',
+            placeholder: 'Selecciona una fecha'
+        });
+    </script>
+</body>
+</html>
